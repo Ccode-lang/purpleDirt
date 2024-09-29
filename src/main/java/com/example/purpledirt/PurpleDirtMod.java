@@ -2,6 +2,8 @@ package com.example.purpledirt;
 
 import com.example.purpledirt.biome.ModTerrablender;
 import com.example.purpledirt.biome.surface.ModSurfaceRules;
+import com.example.purpledirt.blocks.PurpleDirt;
+import com.example.purpledirt.blocks.PurpleDirtNoGrass;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.slf4j.Logger;
 
@@ -36,12 +38,12 @@ public class PurpleDirtMod
 
     public static final DeferredBlock<Block> PURPLE_DIRT_BLOCK = BLOCKS.register(
             "purple_dirt",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
+            () -> new PurpleDirt(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
     );
 
     public static final DeferredBlock<Block> PURPLE_DIRT_NOGRASS_BLOCK = BLOCKS.register(
             "purple_dirt_nograss",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
+            () -> new PurpleDirtNoGrass(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
     );
 
     public static final DeferredItem<BlockItem> PURPLE_DIRT_ITEM = ITEMS.registerSimpleBlockItem("purple_dirt", PURPLE_DIRT_BLOCK);
