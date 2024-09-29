@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "purpledirt:block/purple_dirt_bottom",
+    "east": "purpledirt:block/purple_dirt_side",
+    "north": "purpledirt:block/purple_dirt_side",
+    "particle": "purpledirt:block/purple_dirt_side",
+    "south": "purpledirt:block/purple_dirt_side",
+    "up": "purpledirt:block/purple_dirt_top",
+    "west": "purpledirt:block/purple_dirt_side"
+  }
+}
