@@ -15,6 +15,8 @@ public class ModBlockstateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+
+        //purple dirt grass
         Block block = PurpleDirtMod.PURPLE_DIRT_BLOCK.value();
         ResourceLocation blockKey = BuiltInRegistries.BLOCK.getKey(block);
         String path = blockKey.getPath();
@@ -35,5 +37,15 @@ public class ModBlockstateProvider extends BlockStateProvider {
 
         simpleBlock(block, model);
         simpleBlockItem(block, model);
+
+        //purple dirt no grass
+        Block block1 = PurpleDirtMod.PURPLE_DIRT_NOGRASS_BLOCK.value();
+        ResourceLocation blockKey1 = BuiltInRegistries.BLOCK.getKey(block1);
+        String path1 = blockKey1.getPath();
+
+        ModelFile model1 = models().cubeAll(path1, modLoc("block/purple_dirt_bottom")).texture("particle", modLoc("block/purple_dirt_bottom"));
+
+        simpleBlock(block1, model1);
+        simpleBlockItem(block1, model1);
     }
 }

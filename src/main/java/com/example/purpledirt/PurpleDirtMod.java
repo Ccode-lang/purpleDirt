@@ -39,7 +39,14 @@ public class PurpleDirtMod
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
     );
 
+    public static final DeferredBlock<Block> PURPLE_DIRT_NOGRASS_BLOCK = BLOCKS.register(
+            "purple_dirt_nograss",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT))
+    );
+
     public static final DeferredItem<BlockItem> PURPLE_DIRT_ITEM = ITEMS.registerSimpleBlockItem("purple_dirt", PURPLE_DIRT_BLOCK);
+
+    public static final DeferredItem<BlockItem> PURPLE_DIRT_NOGRASS_ITEM = ITEMS.registerSimpleBlockItem("purple_dirt_nograss", PURPLE_DIRT_NOGRASS_BLOCK);
 
 
 
@@ -65,7 +72,9 @@ public class PurpleDirtMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(PURPLE_DIRT_ITEM);
+            event.accept(PURPLE_DIRT_NOGRASS_ITEM);
+        }
     }
 }

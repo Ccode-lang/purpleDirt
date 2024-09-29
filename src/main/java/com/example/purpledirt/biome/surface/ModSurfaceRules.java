@@ -8,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 
 public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource PURPLE_DIRT = SurfaceRules.state(PurpleDirtMod.PURPLE_DIRT_BLOCK.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource PURPLE_DIRT_NOGRASS = SurfaceRules.state(PurpleDirtMod.PURPLE_DIRT_NOGRASS_BLOCK.get().defaultBlockState());
     private static final SurfaceRules.RuleSource DIRT = SurfaceRules.state(Blocks.DIRT.defaultBlockState());
     private static final SurfaceRules.RuleSource GRASS = SurfaceRules.state(Blocks.GRASS_BLOCK.defaultBlockState());
 
@@ -18,7 +19,10 @@ public class ModSurfaceRules {
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS), DIRT);
 
         return SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.PURPLE_DIRT_BIOME), PURPLE_DIRT),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.PURPLE_DIRT_BIOME), SurfaceRules.sequence(
+                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, PURPLE_DIRT),
+                        SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, PURPLE_DIRT_NOGRASS)
+                )),
 
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
         );
