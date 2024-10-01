@@ -1,22 +1,37 @@
 package com.example.purpledirt.blocks;
 
 import com.example.purpledirt.PurpleDirtMod;
+import com.example.purpledirt.blocks.blockentity.PurpleDirtNoGrassEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
-public class PurpleDirtNoGrass extends Block {
+import static com.example.purpledirt.PurpleDirtMod.PURPLE_DIRT_NOGRASS_ENTITY;
+
+public class PurpleDirtNoGrass extends Block implements EntityBlock {
     public PurpleDirtNoGrass(Properties properties) {
         super(properties);
     }
 
+
+    @Nullable
     @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (pRandom.nextIntBetweenInclusive(0, 100) > 75 && pLevel.getBlockState(pPos.above()).is(Blocks.AIR)) {
-            pLevel.setBlock(pPos, PurpleDirtMod.PURPLE_DIRT_BLOCK.get().defaultBlockState(), 1);
-        }
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new PurpleDirtNoGrassEntity(pPos, pState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return type == PURPLE_DIRT_NOGRASS_ENTITY.get() ? PurpleDirtNoGrassEntity::tick : null;
     }
 }
